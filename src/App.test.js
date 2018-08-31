@@ -3,10 +3,15 @@ import React from "react";
 import { App, enhance } from "./App";
 
 describe("<App/>", () => {
-    describe("component", () => {
-        it("should have div with text in it", () => {
+    describe("base component", () => {
+        it("should show test text", () => {
+            const wrapper = Enzyme.shallow(<App showText />);
+            expect(wrapper.contains(<div>Test text</div>)).toEqual(true);
+        });
+
+        it("show not show test text", () => {
             const wrapper = Enzyme.shallow(<App />);
-            expect(wrapper.find("div").text()).toEqual("Test text");
+            expect(wrapper.contains(<div>Test text</div>)).not.toEqual(true);
         });
     });
 
@@ -16,8 +21,7 @@ describe("<App/>", () => {
             const EnhancedComponent = enhance(MockComponent);
             const wrapper = Enzyme.mount(<EnhancedComponent />);
             const props = wrapper.find(MockComponent).props();
-            expect(props.stateOne).toEqual("test one");
-            expect(props.stateTwo).toEqual("test two");
+            expect(props.showText).toEqual(true);
         });
     });
 });

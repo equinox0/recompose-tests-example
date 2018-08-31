@@ -1,17 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { compose, lifecycle, withState } from "recompose";
 
-const App = () => {
-    return <div>Test text</div>;
-};
+const App = ({ showText }) => <Fragment>{showText && <div>Test text</div>}</Fragment>;
 
 const enhance = compose(
-    withState("stateOne", "setStateOne", ""),
-    withState("stateTwo", "setStateTwo", ""),
+    withState("showText", "setShowText", false),
     lifecycle({
         componentDidMount() {
-            this.props.setStateOne("test one");
-            this.props.setStateTwo("test two");
+            this.props.setShowText(true);
         }
     })
 );
