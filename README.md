@@ -5,6 +5,6 @@
 -   [x] Test component
 -   [x] Test state from recompose
 -   [x] Test lifecycle from recompose
--   [ ] Test async operation in lifecycle
+-   [x] Test async operation in lifecycle
 -   [ ] Snapshot tests
 -   [ ] ...
