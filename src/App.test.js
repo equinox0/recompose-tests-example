@@ -1,4 +1,4 @@
-import Enzyme from "enzyme";
+import Enzyme, { shallow } from "enzyme";
 import React from "react";
 import { App, enhance } from "./App";
 
@@ -7,38 +7,17 @@ jest.mock("./api/vehicle", () => {
 });
 
 describe("<App/>", () => {
-    describe("base component", () => {
-        it("should show header", () => {
+    describe("component", () => {
+        it("should show loader", () => {
             const wrapper = Enzyme.shallow(<App />);
-            expect(wrapper.contains(<h1>Star wars vehicle</h1>)).toEqual(true);
+            expect(wrapper).toMatchSnapshot();
         });
 
         it("should show vehicle if it exists", () => {
             const wrapper = Enzyme.shallow(
                 <App vehicle={{ model: "Vehicle model", name: "Vehicle name" }} />
             );
-            expect(
-                wrapper.contains(
-                    <dl>
-                        <dt>Model:</dt>
-                        <dd>Vehicle model</dd>
-                        <dt>Name:</dt>
-                        <dd>Vehicle name</dd>
-                    </dl>
-                )
-            ).toEqual(true);
-        });
-
-        it("should not show loader if vehicle exists", () => {
-            const wrapper = Enzyme.shallow(
-                <App vehicle={{ model: "Vehicle model", name: "Vehicle name" }} />
-            );
-            expect(wrapper.contains(<div>Loading data...</div>)).not.toEqual(true);
-        });
-
-        it("should show loader if vehicle doest not exist", () => {
-            const wrapper = Enzyme.shallow(<App />);
-            expect(wrapper.contains(<div>Loading data...</div>)).toEqual(true);
+            expect(wrapper).toMatchSnapshot();
         });
     });
 
