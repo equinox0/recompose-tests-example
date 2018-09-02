@@ -1,19 +1,15 @@
 import React, { Fragment } from "react";
 import { compose, lifecycle, withState } from "recompose";
 import { getVehicle } from "./api/vehicle";
+import { Loader, Vehicle } from "./components";
 
 const App = ({ vehicle }) => (
     <Fragment>
         <h1>Star wars vehicle</h1>
         {vehicle ? (
-            <dl>
-                <dt>Model:</dt>
-                <dd>{vehicle.model}</dd>
-                <dt>Name:</dt>
-                <dd>{vehicle.name}</dd>
-            </dl>
+            <Vehicle vehicle={vehicle} />
         ) : (
-            <div>Loading data...</div>
+            <Loader />
         )}
     </Fragment>
 );

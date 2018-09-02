@@ -1,4 +1,4 @@
-import Enzyme, { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import React from "react";
 import { App, enhance } from "./App";
 
@@ -9,12 +9,12 @@ jest.mock("./api/vehicle", () => {
 describe("<App/>", () => {
     describe("component", () => {
         it("should show loader", () => {
-            const wrapper = Enzyme.shallow(<App />);
+            const wrapper = shallow(<App />);
             expect(wrapper).toMatchSnapshot();
         });
 
         it("should show vehicle if it exists", () => {
-            const wrapper = Enzyme.shallow(
+            const wrapper = shallow(
                 <App vehicle={{ model: "Vehicle model", name: "Vehicle name" }} />
             );
             expect(wrapper).toMatchSnapshot();
@@ -25,7 +25,7 @@ describe("<App/>", () => {
         it("should have vehicle in props", () => {
             const MockComponent = () => null;
             const EnhancedComponent = enhance(MockComponent);
-            const wrapper = Enzyme.mount(<EnhancedComponent />);
+            const wrapper = mount(<EnhancedComponent />);
             process.nextTick(() => {
                 wrapper.update();
                 const props = wrapper.find(MockComponent).props();

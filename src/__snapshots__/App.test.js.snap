@@ -5,9 +5,7 @@ exports[`<App/> component should show loader 1`] = `
   <h1>
     Star wars vehicle
   </h1>
-  <div>
-    Loading data...
-  </div>
+  <Loader />
 </Fragment>
 `;
 
@@ -16,19 +14,13 @@ exports[`<App/> component should show vehicle if it exists 1`] = `
   <h1>
     Star wars vehicle
   </h1>
-  <dl>
-    <dt>
-      Model:
-    </dt>
-    <dd>
-      Vehicle model
-    </dd>
-    <dt>
-      Name:
-    </dt>
-    <dd>
-      Vehicle name
-    </dd>
-  </dl>
+  <Vehicle
+    vehicle={
+      Object {
+        "model": "Vehicle model",
+        "name": "Vehicle name",
+      }
+    }
+  />
 </Fragment>
 `;
