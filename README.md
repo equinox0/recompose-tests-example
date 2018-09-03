@@ -8,4 +8,5 @@
 -   [x] Test async operation in lifecycle
 -   [x] Snapshot tests
 -   [ ] Mocking modules/functions
+-   [ ] Simulation of events
 -   [ ] ...
