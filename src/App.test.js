@@ -2,9 +2,9 @@ import { mount, shallow } from "enzyme";
 import React from "react";
 import { App, enhance } from "./App";
 
-jest.mock("./api/vehicle", () => {
-    return { getVehicle: async () => ({ model: "Vehicle model", name: "Vehicle name" }) };
-});
+jest.mock("./api/vehicle", () => ({
+    getVehicle: async () => ({ model: "Vehicle model", name: "Vehicle name" })
+}));
 
 describe("<App/>", () => {
     describe("component", () => {
@@ -26,20 +26,18 @@ describe("<App/>", () => {
     });
 
     describe("enhancer", () => {
-        const setup = () => {
+        const setup = async () => {
             const MockComponent = () => null;
             const EnhancedComponent = enhance(MockComponent);
-            const wrapper = mount(<EnhancedComponent />);
+            const wrapper = await mount(<EnhancedComponent />);
             return { MockComponent, wrapper };
         };
 
-        it("should have vehicle in props", () => {
-            const { MockComponent, wrapper } = setup();
-            process.nextTick(() => {
-                wrapper.update();
-                const props = wrapper.find(MockComponent).props();
-                expect(props.vehicle).toEqual({ model: "Vehicle model", name: "Vehicle name" });
-            });
+        it("should have vehicle in props", async () => {
+            const { MockComponent, wrapper } = await setup();
+            wrapper.update();
+            const props = wrapper.find(MockComponent).props();
+            expect(props.vehicle).toEqual({ model: "Vehicle model", name: "Vehicle name" });
         });
     });
 });
