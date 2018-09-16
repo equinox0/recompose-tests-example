@@ -4,12 +4,19 @@ import { Vehicle } from "./Vehicle";
 
 describe("<Vehicle/>", () => {
     describe("component", () => {
+        const setup = () => ({
+            wrapper: shallow(
+                <Vehicle
+                    vehicle={{
+                        model: "Vehicle model",
+                        name: "Vehicle name"
+                    }}
+                />
+            )
+        });
+
         it("should render vehicle", () => {
-            const vehicle = {
-                model: "Vehicle model",
-                name: "Vehicle name"
-            };
-            const wrapper = shallow(<Vehicle vehicle={vehicle} />);
+            const { wrapper } = setup();
             expect(wrapper).toMatchSnapshot();
         });
     });

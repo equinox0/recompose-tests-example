@@ -4,8 +4,12 @@ import { Loader } from "./Loader";
 
 describe("<Loader/>", () => {
     describe("component", () => {
+        const setup = () => ({
+            wrapper: shallow(<Loader />)
+        });
+
         it("should render loader", () => {
-            const wrapper = shallow(<Loader />);
+            const { wrapper } = setup();
             expect(wrapper).toMatchSnapshot();
         });
     });

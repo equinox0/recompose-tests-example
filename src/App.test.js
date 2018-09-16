@@ -8,24 +8,33 @@ jest.mock("./api/vehicle", () => {
 
 describe("<App/>", () => {
     describe("component", () => {
+        const setup = props => ({
+            wrapper: shallow(<App {...props} />)
+        });
+
         it("should show loader", () => {
-            const wrapper = shallow(<App />);
+            const { wrapper } = setup();
             expect(wrapper).toMatchSnapshot();
         });
 
         it("should show vehicle if it exists", () => {
-            const wrapper = shallow(
-                <App vehicle={{ model: "Vehicle model", name: "Vehicle name" }} />
-            );
+            const { wrapper } = setup({
+                vehicle: { model: "Vehicle model", name: "Vehicle name" }
+            });
             expect(wrapper).toMatchSnapshot();
         });
     });
 
     describe("enhancer", () => {
-        it("should have vehicle in props", () => {
+        const setup = () => {
             const MockComponent = () => null;
             const EnhancedComponent = enhance(MockComponent);
             const wrapper = mount(<EnhancedComponent />);
+            return { MockComponent, wrapper };
+        };
+
+        it("should have vehicle in props", () => {
+            const { MockComponent, wrapper } = setup();
             process.nextTick(() => {
                 wrapper.update();
                 const props = wrapper.find(MockComponent).props();
