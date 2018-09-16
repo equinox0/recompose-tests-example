@@ -8,7 +8,7 @@
 -   [x] Test async operation in lifecycle
 -   [x] Snapshot tests
 -   [x] Mocking modules/functions
--   [ ] Simulation of events
+-   [ ] Simulation of events (add simple form to pick id)
 -   [x] Setups before tests
 -   [ ] Fill TODO
 -   [ ] ...
