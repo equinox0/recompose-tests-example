@@ -7,8 +7,8 @@
 -   [x] Test lifecycle from recompose
 -   [x] Test async operation in lifecycle
 -   [x] Snapshot tests
--   [ ] Mocking modules/functions
+-   [x] Mocking modules/functions
 -   [ ] Simulation of events
--   [ ] Setups before tests
+-   [x] Setups before tests
 -   [ ] Fill TODO
 -   [ ] ...
