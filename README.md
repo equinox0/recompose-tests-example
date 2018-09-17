@@ -11,4 +11,5 @@
 -   [ ] Simulation of events (add simple form to pick id)
 -   [x] Setups before tests
 -   [ ] Fill TODO
+-   [ ] Add bootstrap or semantic
 -   [ ] ...
