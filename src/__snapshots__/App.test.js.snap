@@ -5,7 +5,10 @@ exports[`<App/> component should show loader 1`] = `
   <h1>
     Star wars vehicle
   </h1>
-  <Loader />
+  <withHandlers(SearchForm) />
+  <div>
+    Brak pojazdu o podanym Id
+  </div>
 </Fragment>
 `;
 
@@ -14,6 +17,7 @@ exports[`<App/> component should show vehicle if it exists 1`] = `
   <h1>
     Star wars vehicle
   </h1>
+  <withHandlers(SearchForm) />
   <Vehicle
     vehicle={
       Object {

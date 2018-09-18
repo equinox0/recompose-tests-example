@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchForm/> component should display search form 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <input
+    name="vehicleId"
+    onChange={[Function]}
+    type="number"
+    value={0}
+  />
+  <button
+    type="submit"
+  >
+    Szukaj
+  </button>
+</form>
+`;

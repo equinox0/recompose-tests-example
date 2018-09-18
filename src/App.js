@@ -1,25 +1,63 @@
+import PropTypes from "prop-types";
 import React, { Fragment } from "react";
-import { compose, lifecycle, withState } from "recompose";
+import { compose, lifecycle, withHandlers, withState } from "recompose";
 import { getVehicle } from "./api/vehicle";
-import { Loader, Vehicle } from "./components";
+import { Loader, SearchForm, Vehicle } from "./components";
 
-const App = ({ vehicle }) => (
+const App = ({ isLoading, onSearchValuesChange, onSubmitSearch, searchValues, vehicle }) => (
     <Fragment>
         <h1>Star wars vehicle</h1>
-        {vehicle ? (
+        <SearchForm
+            onChange={onSearchValuesChange}
+            onSubmit={onSubmitSearch}
+            values={searchValues}
+        />
+        {isLoading ? (
+            <Loader />
+        ) : vehicle ? (
             <Vehicle vehicle={vehicle} />
         ) : (
-            <Loader />
+            <div>Brak pojazdu o podanym Id</div>
         )}
     </Fragment>
 );
 
+App.propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    onSearchValuesChange: PropTypes.func.isRequired,
+    onSubmitSearch: PropTypes.func.isRequired,
+    searchValues: PropTypes.shape({
+        vehicleId: PropTypes.number.isRequired
+    }).isRequired,
+    vehicle: PropTypes.shape({
+        model: PropTypes.string,
+        name: PropTypes.string
+    })
+};
+
 const enhance = compose(
+    withState("isLoading", "setIsLoading", false),
+    withState("searchValues", "setSearchValues", { vehicleId: 0 }),
     withState("vehicle", "setVehicle", undefined),
+    withHandlers({
+        onSearchValuesChange: ({ setSearchValues }) => values => {
+            setSearchValues(values);
+        },
+        onSubmitSearch: ({ searchValues, setIsLoading, setVehicle }) => async () => {
+            setIsLoading(true);
+            try {
+                const vehicle = await getVehicle(searchValues.vehicleId);
+                setVehicle(vehicle);
+            } catch (error) {
+                setVehicle();
+            } finally {
+                setIsLoading(false);
+            }
+        }
+    }),
     lifecycle({
         async componentDidMount() {
-            const vehicle = await getVehicle(9);
-            this.props.setVehicle(vehicle);
+            this.props.onSubmitSearch();
         }
     })
 );
