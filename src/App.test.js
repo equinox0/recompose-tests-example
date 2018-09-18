@@ -8,12 +8,25 @@ jest.mock("./api/vehicle", () => ({
 
 describe("<App/>", () => {
     describe("component", () => {
-        const setup = props => ({
-            wrapper: shallow(<App {...props} />)
+        const setup = overridenProps => {
+            const props = {
+                isLoading: false,
+                ...overridenProps
+            };
+            const wrapper = shallow(<App {...props} />);
+
+            return {
+                wrapper
+            };
+        };
+
+        it("should show header, search form and information that there is no vehicle", () => {
+            const { wrapper } = setup();
+            expect(wrapper).toMatchSnapshot();
         });
 
         it("should show loader", () => {
-            const { wrapper } = setup();
+            const { wrapper } = setup({ isLoading: true });
             expect(wrapper).toMatchSnapshot();
         });
 
@@ -33,11 +46,9 @@ describe("<App/>", () => {
             return { MockComponent, wrapper };
         };
 
-        it("should have vehicle in props", async () => {
-            const { MockComponent, wrapper } = await setup();
-            wrapper.update();
-            const props = wrapper.find(MockComponent).props();
-            expect(props.vehicle).toEqual({ model: "Vehicle model", name: "Vehicle name" });
-        });
+        it('should be implemented', () => {
+          
+        })
+        
     });
 });

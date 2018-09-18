@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<App/> component should show loader 1`] = `
+exports[`<App/> component should show header, search form and information that there is no vehicle 1`] = `
 <Fragment>
   <h1>
     Star wars vehicle
@@ -9,6 +9,16 @@ exports[`<App/> component should show loader 1`] = `
   <div>
     Brak pojazdu o podanym Id
   </div>
+</Fragment>
+`;
+
+exports[`<App/> component should show loader 1`] = `
+<Fragment>
+  <h1>
+    Star wars vehicle
+  </h1>
+  <withHandlers(SearchForm) />
+  <Loader />
 </Fragment>
 `;
 
