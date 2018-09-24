@@ -12,4 +12,5 @@
 -   [x] Setups before tests
 -   [ ] Fill TODO
 -   [ ] Add bootstrap or semantic
+-   [ ] Mock redux store
 -   [ ] ...
