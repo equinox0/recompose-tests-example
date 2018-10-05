@@ -10,5 +10,4 @@
 -   [x] Mocking modules/functions
 -   [x] Simulation of events (add simple form to pick id)
 -   [x] Setups before tests
--   [ ] Mock redux store
 -   [ ] ...
